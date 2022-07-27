@@ -1,0 +1,53 @@
+htlm
+  head
+    title  D- CLIC  
+    link(rel='stylesheet' href='style.css')
+  .container
+    .menu
+      ul
+        li.logo
+          img(src='./image/sayna.jpg')
+        li
+          a(href='/Home')  Home
+        li
+          a(href='/BackEnd')  BackEnd
+        li
+          a(href='/FrontEnd')  FrontEnd
+        li
+          a(href='/MarketingDigital')  Marketing Digital
+        li
+          a(href='/UX-UI')  UX/UI
+        li
+          a(href='/Contact')  Contact
+        // <li> <a href = "#" class="signup-btn"> <span> Sign Up </span> </a> </li>
+    .banner
+      .app-text
+        h1
+          | D-CLIC 
+          br
+          |  Venez nous voir
+        p Prenez contact avec nous. 
+        .play-btn
+          .play-btn-inner
+      .app-picture-contact
+        img(src='./image/image_contact.jpg')
+      h2 Notez la formation
+      div
+        form(action='/createAvis' method='post')
+          label(for='fname') First Name
+          input#fname(type='text' name='firstname' placeholder='Your name..')
+          label(for='lname') Last Name
+          input#lname(type='text' name='lastname' placeholder='Your last name..')
+          label(for='avis') Votre avis
+          input#avis(type='text' name='avis' placeholder='donnez votre avis sur la formation..')
+          label(for='note') Note
+          input#note(type='number' name='note' min='1' max='5' placeholder='votre note ..')
+          label(for='formation') Formation
+          select#formation(name='formation')
+            option(value='Frontent') Frontend
+            option(value='Backend') Backend
+            option(value='UX-UI') Marketing
+            option(value='UX-UI') UX-UI
+          input(type='submit' value='Submit')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
+  script(src='../db//data.js')
