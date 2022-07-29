@@ -34,9 +34,11 @@ htlm
           .play-btn-inner
       .app-picture-frontend
         img(src='./image/image_frontend.jpg')
-      .flip-box
-        .flip-box-inner
-          .flip-box-front
-            h2 Avis des utilisateurs sur le frontend
-          .flip-box-back
-            h2 Suite
+  .wrapper
+    each res in result
+      .box 
+        .card
+          h1 #{res.fname} #{res.lname}
+          p.title &quot; #{res.avis}. &quot;
+          p Note : #{res.note}/5
+          p.bg-dark #{res.formation}        

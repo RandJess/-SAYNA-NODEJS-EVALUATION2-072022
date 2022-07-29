@@ -35,19 +35,17 @@ htlm
       div
         form(action='/createAvis' method='post')
           label(for='fname') First Name
-          input#fname(type='text' name='firstname' placeholder='Your name..')
+          input#fname(type='text' name='fname' placeholder='Your name..')
           label(for='lname') Last Name
-          input#lname(type='text' name='lastname' placeholder='Your last name..')
+          input#lname(type='text' name='lname' placeholder='Your last name..')
           label(for='avis') Votre avis
           input#avis(type='text' name='avis' placeholder='donnez votre avis sur la formation..')
           label(for='note') Note
           input#note(type='number' name='note' min='1' max='5' placeholder='votre note ..')
           label(for='formation') Formation
           select#formation(name='formation')
-            option(value='Frontent') Frontend
+            option(value='Frontend') Frontend
             option(value='Backend') Backend
-            option(value='UX-UI') Marketing
+            option(value='Marketing') Marketing
             option(value='UX-UI') UX-UI
-          input(type='submit' value='Submit')
-  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js')
-  script(src='../db//data.js')
+          input#btn(type='submit' value='Submit')

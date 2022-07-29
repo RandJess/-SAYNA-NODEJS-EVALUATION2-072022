@@ -1,92 +1,51 @@
-| htlm
-| head
-| title  D- CLIC  
-| link(rel=&apos;stylesheet&apos; href=&apos;style.css&apos;)
-| .container
-| .menu
-| ul
-| li.logo
-htlm
-  head
-    title  D- CLIC  
-    link(rel='stylesheet' href='style.css')
-  .container
-    .menu
-      ul
-        li.logo
-          img(src='./image/sayna.jpg')
-        li
-          a(href='/Home')  Home
-        li
-          a(href='/BackEnd')  BackEnd
-        li
-          a(href='/FrontEnd')  FrontEnd
-        li
-          a(href='/MarketingDigital')  Marketing Digital
-        li
-          a(href='/UX-UI')  UX/UI
-        li
-          a(href='/Contact')  Contact
-        // <li> <a href = "#" class="signup-btn"> <span> Sign Up </span> </a> </li>
-    .banner
-      .app-text
-        h3
-          | D-CLIC 
-          br
-          |  Venez voir avec nous les supports et canaux digitaux 
-          br
-          | pour promouvoir des produits et services.
-        p
-          | Marketing digital ou marketing num&eacute;rique ?  
-          br
-          |  C&rsquo;est m&eacute;tier un avenir englobant la technologie 
-          br
-          |  et le commerce.
-        .play-btn
-          .play-btn-inner
-      .app-picture-marketing
-        img(src='./image/image_marketing.jpg')
-      .flip-box
-        .flip-box-inner
-          .flip-box-front
-            h2 Avis des utilisateurs sur le Marketing
-          .flip-box-back
-            h2 Suite
-|           img(src=&apos;./image/sayna.jpg&apos;)
-|         li
-|           a(href=&apos;Home.html&apos;)  Home
-|         li
-|           a(href=&apos;BackEnd.html&apos;)  BackEnd
-|         li
-|           a(href=&apos;FrontEnd.html&apos;)  FrontEnd
-|         li
-|           a(href=&apos;MarketingDigital.html&apos;)  Marketing Digital
-|         li
-|           a(href=&apos;UX-UI.html&apos;)  UX/UI
-|         li
-|           a(href=&apos;Contact.html&apos;)  Contact
-|         //
-| .banner
-| .app-text
-| h1
-| | D-CLIC
-| br
-| |  Venez coder avec nous
-| p
-| | Apprendre &agrave; coder : du plaisir pour tout le monde !
-| br
-| |  Conna&icirc;tre le codage, ce n&apos;est pas seulement
-| br
-| |  satisfaire notre curiosit&eacute;.
-| br
-| |  Il est probable que l&apos;avenir de l&apos;humanit&eacute; en d&eacute;pend.
-| .play-btn
-| .play-btn-inner
-| .app-picture-index
-| img(src=&apos;./image/photo.jpg&apos;)
-| .flip-box
-| .flip-box-inner
-| .flip-box-front
-| h2 Les meilleures notes des formations
-| .flip-box-back
-| h2 Suite
+html 
+  html
+    head
+      title  D- CLIC  
+      link(rel='stylesheet' href='style.css')
+      link(rel='stylesheet', href='../CSS/requirements.css')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js')
+    .container
+      .menu
+        ul
+          li.logo
+            img(src='./image/sayna.jpg')
+          li
+            a(href='/Home')  Home
+          li
+            a(href='/BackEnd')  BackEnd
+          li
+            a(href='/FrontEnd')  FrontEnd
+          li
+            a(href='/MarketingDigital')  Marketing Digital
+          li
+            a(href='/UX-UI')  UX/UI
+          li
+            a(href='/Contact')  Contact
+          // <li> <a href = "#" class="signup-btn"> <span> Sign Up </span> </a> </li>
+      .banner
+        .app-text
+          h3
+            | D-CLIC 
+            br
+            |  Venez voir avec nous les supports et canaux digitaux 
+            br
+            | pour promouvoir des produits et services.
+          p
+            | Marketing digital ou marketing num&eacute;rique ?  
+            br
+            |  C&rsquo;est m&eacute;tier un avenir englobant la technologie 
+            br
+            |  et le commerce.
+          .play-btn
+            .play-btn-inner
+        .app-picture-marketing
+          img(src='./image/image_marketing.jpg')
+    .wrapper
+      each res in result
+        .box 
+          .card
+            h1 #{res.fname} #{res.lname}
+            p.title &quot; #{res.avis}. &quot;
+            p Note : #{res.note}/5
+            p.bg-dark #{res.formation}

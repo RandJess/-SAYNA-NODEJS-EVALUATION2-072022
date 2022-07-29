@@ -1,24 +1,11 @@
-// const express= require('express')
-// const app = express()
-// const bodyParser = require('body-parser')
-// const {Avis}=require('./models/avis')
-// const sequelize= require('./db/sequelize')
-// sequelize.initDB()
-
-// require('dotenv').config()
-// app
-//     .use(bodyParser.json())
-//     .use(bodyParser.urlencoded({extended:true}))
-
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT)
-
 const mysql = require("mysql");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
 const pug = require("pug");
+const { log } = require("console");
+const { builtinModules } = require("module");
 
 //env
 require("dotenv").config();
@@ -37,140 +24,99 @@ let mysqlConnection = mysql.createConnection({
   password: PASSWORD,
   database: "Avis",
 });
-
-mysqlConnection.connect((err) => {
-  if (err) console.log("probleme de conexion:" + err);
-  else console.log("connexion à la BD etablie...");
+//Cree la structure de la table Avis
+mysqlConnection.query("USE Avis", function (err, result, fields) {
+  if (err) throw err;
 });
 
-//ouverture du serveur
-app.listen(PORT);
 
 //VIEW ENGINE SETUP
 app.use(express.static("views"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
-app.get("/Home", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
+require("./script");
 
-  res.render("Home");
-});
+
+app.get("/Home", (req, res) => {
+  mysqlConnection.query(
+    "select * from Avis where note>3 order by note desc",
+    (err, result, fields) => {
+      if (err) console.log("Probleme de chargement de la BD");
+      res.render("Home", { result: result });
+    }
+  )
+})
+
 app.get("/Backend", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
-  res.render("BackEnd");
+  mysqlConnection.query("select * from Avis where formation='Backend' order by formation desc", (err, result, fields)=>{
+    if(err) console.log(err);
+    res.render("BackEnd", {result: result});
+  })
 });
+
+
 app.get("/Contact", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
   res.render("Contact");
 });
+
+
 app.get("/FrontEnd", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
-  res.render("FrontEnd");
+  mysqlConnection.query("select * from Avis where formation='Frontend' order by formation desc", (err, result, fields)=>{
+    if(err) console.log();
+    res.render("FrontEnd", {result:result});
+  })
 });
+
 app.get("/MarketingDigital", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
-  res.render("MarketingDigital");
-});
+  mysqlConnection.query("select * from Avis where formation='Marketing' order by formation desc", (err, result, fields)=>{
+    if(err) console.log();
+    res.render("MarketingDigital", {result:result});
+  })
+})
+
+
 app.get("/singup", (req, res) => {
-  //consultation de la bd
-  // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-  //     if(err)console.log("Probleme de chargement de la BD");
-  //     else{
-  //         console.log(rows);
-  //         res.render('user_index',{
-  //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-  //             data:rows
-  //         });
-  //     }
-  // });
   res.render("singup");
 });
+
+
 app.get("/UX-UI", (req, res) => {
-    //consultation de la bd
-    // mysqlConnection.query('select * from direction',(err,rows,fields)=>{
-    //     if(err)console.log("Probleme de chargement de la BD");
-    //     else{
-    //         console.log(rows);
-    //         res.render('user_index',{
-    //             title:'DIRECTION TRAVAUX SCIENTIQUE',
-    //             data:rows
-    //         });
-    //     }
-    // });
-    res.render("UX-UI");
-  });
+  mysqlConnection.query("select * from Avis where formation='UX-UI' order by formation desc", (err, result, fields)=>{
+    if(err) console.log();
+    res.render("UX-UI", {result:result});
+  })
+});
+
 
 app.post("/createAvis", (req, res) => {
-  console.log(
-    "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
-  );
-  //insertion du model : req.body
   const data = {
-    fname: req.body,
-    lname: req.body,
-    avis: req.body,
-    note: req.body,
-    formation: req.body,
+    fname: req.body.fname,
+    lname: req.body.lname,
+    avis: req.body.avis,
+    note: req.body.note,
+    formation: req.body.formation,
   };
- const sql = "CREATE TABLE Avis (fname VARCHAR(255) NOT NULL, lname VARCHAR(255) NOT NULL, avis VARCHAR(255) NOT NULL,note INT(1) NOT NULL, formation VARCHAR(255) NOT NULL)";
-  mysqlConnection.query(sql, [data], (err, rows, fields) => {
-    if (err) console.log("Echec d'enregistrement à BD");
-    else {
+
+  const sql =
+    "CREATE TABLE IF NOT EXISTS Avis ( fname VARCHAR(255), lname VARCHAR(255), avis VARCHAR(255), note INT, formation VARCHAR(255) )";
+  const inst = "insert into Avis set ?";
+  mysqlConnection.query(sql, (err, results, fields) => {
+    console.log("creation table reuusi");
+  });
+
+  mysqlConnection.query(inst, [data], (err, result, fields) => {
+    if (err) {
+      console.log(err);
+      res.render("Contact");
+    } else {
       console.log("Enregistrement effectuee");
       res.render("Home");
     }
   });
 });
 
-module.exports = app;
+module.exports=app;
+
+//ouverture du serveur
+app.listen(PORT);
