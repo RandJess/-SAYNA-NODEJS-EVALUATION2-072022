@@ -40,11 +40,12 @@ htlm
       .app-picture-index
         img(src='./image/photo.jpg')
       h1.comms COMMENTAIRES 
-.wrapper
-  each res in result
-    .box 
-      .card
-        h1 #{res.fname} #{res.lname}
-        p.title &quot; #{res.avis}. &quot;
-        p Note : #{res.note}/5
-        p.bg-dark #{res.formation}
+  .wrapper
+    each res in result
+      .box 
+        .card
+          h1 #{res.fname} #{res.lname}
+          p.title &quot; #{res.avis}. &quot;
+          p Note : #{res.note}/5
+          p.bg-dark #{res.formation}
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
