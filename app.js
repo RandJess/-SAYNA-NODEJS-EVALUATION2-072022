@@ -1,3 +1,4 @@
+// http://localhost:5000/Home
 //env
 require("dotenv").config();
 const mysql = require("mysql");
@@ -120,10 +121,8 @@ app.post("/createAvis", (req, res) => {
   mysqlConnection.query(inst, [data], (err, result, fields) => {
     if (err) {
       console.log(err);
-      res.render("Contact");
     } else {
-      console.log("Enregistrement effectuee");
-      res.json({ result: data });
+      res.render("Contact");
     }
   });
 });

@@ -43,12 +43,13 @@ htlm
           .flip-box-back
             h2 Suite
   .wrapper
-    each res in result
-      .box 
-        .card
-          h1 #{res.fname} #{res.lname}
-          p.title &quot; #{res.avis}. &quot;
-          p Note : #{res.note}/5
-          p.bg-dark #{res.formation}
+    if (result)
+      each res in result
+        .box 
+          .card
+            h1 #{res.fname} #{res.lname}
+            p.title &quot; #{res.avis}. &quot;
+            p Note : #{res.note}/5
+            p.bg-dark #{res.formation}
 
           

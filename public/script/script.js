@@ -25,8 +25,8 @@
 // const n = 5;
 
 // function out(nb){
-//     elemClassement = document.getElementById("note");
-//     tabImg = document.getElementsByTagName("img");
+//     const elemClassement= document.getElementById("note")
+//     const tabImg = document.getElementsByTagName("img");
      
 //     for (i=0; i<nb; i++){
 //       tabImg[i].src = StarOutSrc;
@@ -40,8 +40,8 @@
 
 //   function on(nb){
 //     console.debug("nb"+nb);//affiche la valeur de nb dans la console JS "F12"
-//     elemClassement = document.getElementById("note");
-//     tabImg = document.getElementsByTagName("img");
+//     const elemClassement = document.getElementById("note");
+//     const tabImg = document.getElementsByTagName("img");
       
 //     let imgSrc = StarOnSrc, imgValue="on";
 //     for(i = 0; i < n; i++)
@@ -65,35 +65,17 @@ const lname= document.getElementById("lname")
 const avis= document.getElementById("avis")
 const note= document.getElementById("note")
 const formation= document.getElementById("formation")
-
-// function getdata(err){
-//   console.log(err);
-//    if(!err)
-//    {
-//     $.ajax({
-//       type: 'post',
-//       url: '/Home',
-//       data: {
-//         fname:fname,
-//         lname:lname,
-//         avis:avis,
-//         note:note,
-//         formation:formation
-//       },
-//       // success: function (response) {
-//         //    $('#res').pug(response);
-//         // }
-//       });
-//       console.log("heuyyyyyyyyyyyyyyyyyyy")
-//    }
-//    else
-//    {
-//     // $('#res').pug(console.log("Erreur fetch"));
-//    }
+// const inputs = [...document.querySelectorAll(input)]
+const inputs= [fname, lname, avis, note, formation]
+console.log("lolll");
+// for (let i = 0; i < inputs.length; i++) {
+//   if(input[i].key='Enter'){
+//     send()
+//   }
 // }
-// getdata()
 
 
+function focusing(){}
 
 function send(event){
   event.preventDefault()
@@ -108,9 +90,8 @@ function send(event){
     headers: {'Content-type': 'application/json'},
     method: 'post',
     data: JSON.stringify(data)
-  }).then(res=>res.json().then(
-    resultat=>console.log(resultat)
-  ))
+  })
+  
 }
 
 const btn = document.querySelector("form");
